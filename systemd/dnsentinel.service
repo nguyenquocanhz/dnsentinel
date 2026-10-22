@@ -1,0 +1,25 @@
+[Unit]
+Description=DNSentinel - giam sat uptime phan giai DNS .vn qua VNNIC
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/dnsentinel/venv/bin/dnsentinel-watch
+Restart=on-failure
+RestartSec=5
+# box yeu (1 core / 1GB) => gioi han tai nguyen
+MemoryMax=120M
+CPUQuota=40%
+Nice=10
+User=root
+WorkingDirectory=/var/lib/dnsentinel
+# Chi can mang ra ngoai (UDP/TCP 53) + ghi DB -> siet quyen cho an toan
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/dnsentinel
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

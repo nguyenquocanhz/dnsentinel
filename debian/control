@@ -1,0 +1,20 @@
+Source: dnsentinel
+Section: admin
+Priority: optional
+Maintainer: DNSentinel contributors <noreply@example.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://example.com/dnsentinel
+Rules-Requires-Root: no
+
+Package: dnsentinel
+Architecture: all
+Depends: ${misc:Depends}, python3 (>= 3.9), python3-venv
+Description: Giam sat uptime phan giai DNS ten mien .vn qua cum VNNIC
+ DNSentinel truy van phan giai (NS/SOA/A/AAAA) toi cum may chu ten mien quoc
+ gia Viet Nam (VNNIC: a..h.dns-servers.vn) cho moi ten mien .vn trong danh
+ sach, ghi nhan may chu nao tra loi, thoi gian phan hoi va trang thai tong
+ hop (up/degraded/down), tinh uptime %. Vong lap dinh ky qua systemd.
+ .
+ Python thuan, nhe (core khong phu thuoc gi ngoai thu vien chuan), mot SQLite
+ lam nguon du lieu duy nhat. Co CLI quan ly ten mien va xem trang thai.

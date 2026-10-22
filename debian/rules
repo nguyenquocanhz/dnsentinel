@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# Dong goi toi gian: khong build Python o day, postinst tu tao venv.
+%:
+	dh $@
+
+override_dh_auto_build:
+override_dh_auto_test:
+override_dh_auto_install:
+	install -d debian/dnsentinel/usr/lib/dnsentinel/build
+	cp -r src pyproject.toml requirements.txt README.md LICENSE \
+	      debian/dnsentinel/usr/lib/dnsentinel/build/
+	install -d debian/dnsentinel/lib/systemd/system
+	install -m 0644 systemd/dnsentinel.service \
+	      debian/dnsentinel/lib/systemd/system/

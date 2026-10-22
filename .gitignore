@@ -1,0 +1,35 @@
+# --- du lieu runtime (KHONG commit) ---
+*.db
+*.db-wal
+*.db-shm
+*.log
+run.log
+
+# --- python ---
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# --- debian build artifacts ---
+debian/dnsentinel/
+debian/.debhelper/
+debian/files
+debian/*.substvars
+debian/*.debhelper.log
+debian/debhelper-build-stamp
+packaging/stage/
+*.deb
+*.buildinfo
+*.changes
+
+# --- apt repo build ---
+packaging/apt-repo/
+
+# --- misc ---
+.DS_Store
+*.swp

@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+case "$1" in
+  remove)
+    systemctl disable dnsentinel >/dev/null 2>&1 || true
+    rm -f /usr/bin/dnsentinel /usr/bin/dnsentinel-watch
+    rm -rf /usr/lib/dnsentinel/venv
+    systemctl daemon-reload || true
+    ;;
+  purge)
+    rm -f /usr/bin/dnsentinel /usr/bin/dnsentinel-watch
+    rm -rf /usr/lib/dnsentinel
+    # giu /var/lib/dnsentinel (du lieu); xoa thu cong neu muon:
+    #   rm -rf /var/lib/dnsentinel
+    systemctl daemon-reload || true
+    ;;
+esac
+#DEBHELPER#
+exit 0

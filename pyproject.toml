@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dnsentinel"
+version = "1.0.0"
+description = "Giam sat uptime phan giai DNS ten mien .vn qua cum may chu quoc gia VNNIC"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "DNSentinel" }]
+# Core khong phu thuoc gi (DNS wire thuan stdlib). 'rich' chi de CLI dep hon.
+dependencies = []
+
+[project.optional-dependencies]
+cli = ["rich>=13.0"]
+
+[project.scripts]
+dnsentinel = "dnsentinel.cli.tui:main"
+dnsentinel-watch = "dnsentinel.__main__:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

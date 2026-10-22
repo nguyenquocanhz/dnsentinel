@@ -1,0 +1,7 @@
+dnsentinel (1.0.0) stable; urgency=low
+
+  * Ban dau: giam sat uptime phan giai DNS ten mien .vn qua cum VNNIC.
+  * Kien truc SOLID/OOP (core/data/resolve/services/cli), mot SQLite.
+  * DNS wire protocol thuan stdlib (khong phu thuoc), CLI co rich tuy chon.
+
+ -- DNSentinel contributors <noreply@example.com>  Wed, 22 Oct 2026 00:00:00 +0700

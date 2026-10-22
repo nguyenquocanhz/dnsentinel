@@ -1,0 +1,42 @@
+#!/bin/sh
+# postinst — tao venv, cai package, seed DB, enable service.
+set -e
+
+HOME_DIR=/usr/lib/dnsentinel
+BUILD="$HOME_DIR/build"
+STATE=/var/lib/dnsentinel
+
+case "$1" in
+  configure)
+    mkdir -p "$STATE"
+    chmod 700 "$STATE" || true
+
+    if [ ! -x "$HOME_DIR/venv/bin/python" ]; then
+      echo " >> Tao moi truong Python (venv)…"
+      python3 -m venv "$HOME_DIR/venv"
+    fi
+    "$HOME_DIR/venv/bin/pip" install --quiet --upgrade pip wheel >/dev/null 2>&1 || true
+    echo " >> Cai DNSentinel (+ rich cho CLI)…"
+    "$HOME_DIR/venv/bin/pip" install --quiet --no-cache-dir "$BUILD[cli]" \
+        || "$HOME_DIR/venv/bin/pip" install --quiet --no-cache-dir "$BUILD"
+
+    ln -sf "$HOME_DIR/venv/bin/dnsentinel"       /usr/bin/dnsentinel
+    ln -sf "$HOME_DIR/venv/bin/dnsentinel-watch" /usr/bin/dnsentinel-watch
+
+    # seed DB (tao schema + cau hinh mac dinh)
+    DNSENTINEL_STATE_DIR="$STATE" "$HOME_DIR/venv/bin/dnsentinel" servers >/dev/null 2>&1 || true
+
+    systemctl daemon-reload || true
+    systemctl enable dnsentinel >/dev/null 2>&1 || true
+    systemctl restart dnsentinel || true
+
+    echo ""
+    echo " >> DNSentinel da cai xong."
+    echo " >> Them ten mien:   sudo dnsentinel add chinhphu.vn"
+    echo " >> Xem trang thai:  sudo dnsentinel status"
+    echo " >> Nhat ky daemon:  journalctl -u dnsentinel -f"
+    ;;
+esac
+
+#DEBHELPER#
+exit 0
