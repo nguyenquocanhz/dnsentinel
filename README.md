@@ -1,5 +1,11 @@
 # DNSentinel
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+[![Dependencies](https://img.shields.io/badge/core%20deps-none%20(stdlib)-brightgreen.svg)](#2-ki%E1%BA%BFn-tr%C3%BAc-solidoop-ph%C3%A2n-t%E1%BA%A7ng)
+[![DNS](https://img.shields.io/badge/DNS-VNNIC%20national%20servers-orange.svg)](https://vnnic.vn/en/dns/dns-system/vietnam-national-domain-name-server-system)
+[![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)](#3-c%C3%A0i-%C4%91%E1%BA%B7t)
+
 **Giám sát uptime phân giải DNS cho tên miền `.vn`** thông qua cụm **máy chủ tên
 miền quốc gia Việt Nam (VNNIC)** — `a.dns-servers.vn` … `h.dns-servers.vn`.
 
